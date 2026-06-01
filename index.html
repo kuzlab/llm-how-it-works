@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>LLM の仕組み体験アプリ</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <h1 class="site-title">LLM の仕組み、のぞいてみる</h1>
+      <p class="site-sub">大規模言語モデルが内部で何をしているかを、3 つの視点で体験する小さな教材です。</p>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="セクション切り替え">
+    <div class="wrap tabs-inner">
+      <button class="tab" role="tab" data-tab="tab1" aria-selected="true">① 次の単語をあてる</button>
+      <button class="tab" role="tab" data-tab="tab2" aria-selected="false">② 言葉を分解する</button>
+      <button class="tab" role="tab" data-tab="tab3" aria-selected="false">③ 意味の地図</button>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <!-- ============================================================== -->
+    <!-- タブ1: 次の単語をあてる                                          -->
+    <!-- ============================================================== -->
+    <section class="panel" id="tab1" role="tabpanel" aria-labelledby="tab1">
+      <h2 class="panel-title">次の単語をあてる</h2>
+      <p class="panel-desc">
+        LLM は文章を作るとき、<strong>次に来そうな単語を確率で予測</strong>して、その中から 1 つを選ぶ ― この作業をひたすら繰り返しています。
+        ここでは、用意した見本文を 1 語ずつ組み立てながら、各時点で LLM が考えている候補を覗いてみましょう。
+      </p>
+
+      <div class="t1-controls">
+        <label class="field">
+          <span class="field-label">見本の文章</span>
+          <select id="t1-sentence-select"></select>
+        </label>
+
+        <div class="field temperature-field">
+          <span class="field-label">
+            温度(ランダムさ)
+            <span id="t1-temp-value" class="temp-value">1.00</span>
+          </span>
+          <input type="range" id="t1-temp" min="0.1" max="1.5" step="0.05" value="1.0">
+          <div class="temp-legend">
+            <span>低温 ← 自信がある / 無難</span>
+            <span>迷う / 自由 → 高温</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="t1-stage">
+        <div class="t1-sentence" id="t1-sentence" aria-live="polite"></div>
+      </div>
+
+      <div class="t1-candidates" id="t1-candidates" aria-live="polite"></div>
+
+      <div class="t1-buttons">
+        <button class="btn primary" id="t1-next">次の単語へ ▶</button>
+        <button class="btn" id="t1-auto">自動再生 ⏵</button>
+        <button class="btn" id="t1-dice">サイコロを振る 🎲</button>
+        <button class="btn ghost" id="t1-reset">最初から ⟲</button>
+      </div>
+
+      <p class="t1-final" id="t1-final" hidden></p>
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- タブ2: 言葉を分解する                                            -->
+    <!-- ============================================================== -->
+    <section class="panel" id="tab2" role="tabpanel" hidden>
+      <h2 class="panel-title">言葉を分解する</h2>
+      <p class="panel-desc">
+        LLM は文章を文字や単語ではなく <strong>「トークン」</strong> という単位で扱います。
+        同じ意味の文でも、日本語と英語では切れ方や数がずいぶん違います。
+        <span class="note">トークン＝ LLM が文章を区切る最小単位。各トークンには固有の番号(ID)が割り振られている。</span>
+      </p>
+
+      <div class="t2-controls">
+        <label class="field">
+          <span class="field-label">例文</span>
+          <select id="t2-text-select"></select>
+        </label>
+      </div>
+
+      <div class="t2-result">
+        <div class="t2-raw">
+          <span class="t2-raw-label">元の文</span>
+          <div class="t2-raw-text" id="t2-raw"></div>
+        </div>
+        <div class="t2-tokens" id="t2-tokens"></div>
+        <div class="t2-count" id="t2-count"></div>
+      </div>
+
+      <div class="t2-compare">
+        <h3 class="t2-compare-title">並べて比べる ― 同じくらいの意味でも長さが違う</h3>
+        <div class="t2-compare-grid">
+          <div class="t2-compare-col">
+            <div class="t2-compare-meta"><span class="lang">日本語</span> 今日はいい天気ですね</div>
+            <div class="t2-compare-tokens" id="t2-compare-ja"></div>
+            <div class="t2-compare-count" id="t2-compare-ja-count"></div>
+          </div>
+          <div class="t2-compare-col">
+            <div class="t2-compare-meta"><span class="lang">英語</span> It is a nice day</div>
+            <div class="t2-compare-tokens" id="t2-compare-en"></div>
+            <div class="t2-compare-count" id="t2-compare-en-count"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- タブ3: 意味の地図                                                -->
+    <!-- ============================================================== -->
+    <section class="panel" id="tab3" role="tabpanel" hidden>
+      <h2 class="panel-title">意味の地図</h2>
+      <p class="panel-desc">
+        LLM は言葉を <strong>「数のかたまり(ベクトル)」</strong> として扱います。
+        近い場所にある言葉ほど、LLM にとって意味が似ています。
+        単語をタップしてみると、意味の近い言葉が浮かび上がります。
+      </p>
+
+      <div class="t3-legend" id="t3-legend"></div>
+
+      <div class="t3-map-wrap">
+        <svg class="t3-map" id="t3-map" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet" aria-label="単語の意味の地図"></svg>
+      </div>
+
+      <p class="t3-hint" id="t3-hint">単語をタップ／ホバーすると、意味の近い 3 語が線でつながります。</p>
+    </section>
+
+    <p class="disclaimer">
+      ※ これは仕組みを直感で理解するための簡略化されたデモです。実際の LLM はニューラルネットワークを使い、はるかに大規模です。
+    </p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <small>武蔵野美術大学向け教材 ― ブラウザだけで完結します。</small>
+    </div>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
