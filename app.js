@@ -10,6 +10,27 @@
   function deepClone(x) { return JSON.parse(JSON.stringify(x)); }
 
   // ====================================================================
+  // テーマ切り替え (issue #6)
+  // ====================================================================
+  const themeBtns = document.querySelectorAll(".theme-btn");
+  function setTheme(name) {
+    const valid = ["cyberpunk", "paper", "projector"];
+    if (!valid.includes(name)) name = "cyberpunk";
+    if (name === "cyberpunk") {
+      delete document.documentElement.dataset.theme;
+    } else {
+      document.documentElement.dataset.theme = name;
+    }
+    themeBtns.forEach(b => {
+      b.setAttribute("aria-pressed", b.dataset.theme === name ? "true" : "false");
+    });
+  }
+  themeBtns.forEach(b => {
+    b.addEventListener("click", () => setTheme(b.dataset.theme));
+  });
+  setTheme("cyberpunk");
+
+  // ====================================================================
   // タブ切り替え
   // ====================================================================
   const tabButtons = document.querySelectorAll(".tab");

@@ -71,6 +71,116 @@ body::before {
 ::selection { background: var(--magenta); color: #fff; }
 
 /* ============================================================ */
+/*  THEMES (issue #6)                                            */
+/* ============================================================ */
+/* ペーパー(明) — 紙の質感。明るい教室向け。グロー/スキャンライン無し */
+:root[data-theme="paper"] {
+  --bg:         #F5EFE3;
+  --bg-2:       #FAF6EC;
+  --surface:    #FFFFFF;
+  --surface-2:  #F5EFE3;
+  --ink:        #1B1F2A;
+  --ink-soft:   #4A5266;
+  --muted:      #8C92A4;
+  --line:       #D8D2C2;
+  --line-soft:  #EBE5D6;
+
+  --magenta:    #B8255F;
+  --cyan:       #0E6B83;
+  --green:      #15803D;
+  --amber:      #B45309;
+
+  --glow-mag:   none;
+  --glow-cyan:  none;
+  --glow-green: none;
+}
+:root[data-theme="paper"] body::before { display: none; }
+:root[data-theme="paper"] body { background: var(--bg); }
+:root[data-theme="paper"] .tabs { background: rgba(245,239,227,0.92); }
+:root[data-theme="paper"] .panel {
+  background: var(--surface);
+  border-color: var(--line);
+}
+:root[data-theme="paper"] .t1-stage,
+:root[data-theme="paper"] .t2-result,
+:root[data-theme="paper"] .t2-compare-col,
+:root[data-theme="paper"] .t3-map-wrap,
+:root[data-theme="paper"] .t3-context,
+:root[data-theme="paper"] .t4-stage,
+:root[data-theme="paper"] .t4-col,
+:root[data-theme="paper"] .t4-note {
+  background: var(--surface-2);
+}
+:root[data-theme="paper"] .tok-chip { background: var(--surface); }
+:root[data-theme="paper"] .cand-row {
+  background: var(--surface-2);
+}
+:root[data-theme="paper"] .cand-row:hover {
+  background: rgba(14, 107, 131, 0.08);
+}
+:root[data-theme="paper"] .cand-row.chosen {
+  background: rgba(21, 128, 61, 0.10);
+}
+:root[data-theme="paper"] .btn { background: var(--surface); }
+:root[data-theme="paper"] .btn:hover { background: var(--surface-2); }
+:root[data-theme="paper"] .btn.primary {
+  background: var(--magenta);
+  color: #FFFFFF;
+  border-color: var(--magenta);
+}
+:root[data-theme="paper"] .t1-sentence .word.just-added,
+:root[data-theme="paper"] .cand-row.chosen .cand-token {
+  text-shadow: none;
+}
+:root[data-theme="paper"] .site-title::before { text-shadow: none; }
+:root[data-theme="paper"] .temp-value,
+:root[data-theme="paper"] .t2-count strong,
+:root[data-theme="paper"] .t2-compare-count strong { text-shadow: none; }
+
+/* 高コントラスト(プロジェクター) — 純黒+明黄+明シアン。視認性最優先 */
+:root[data-theme="projector"] {
+  --bg:         #000000;
+  --bg-2:       #050505;
+  --surface:    #0A0A0A;
+  --surface-2:  #141414;
+  --ink:        #FFFFFF;
+  --ink-soft:   #D4D4D4;
+  --muted:      #909090;
+  --line:       #4A4A4A;
+  --line-soft:  #2A2A2A;
+
+  --magenta:    #FF3DA5;
+  --cyan:       #00FFFF;
+  --green:      #00FF66;
+  --amber:      #FFEE00;
+
+  --glow-mag:   0 0 6px rgba(255, 61, 165, 0.7);
+  --glow-cyan:  0 0 6px rgba(0, 255, 255, 0.7);
+  --glow-green: 0 0 6px rgba(0, 255, 102, 0.7);
+}
+:root[data-theme="projector"] body::before {
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.02) 0px,
+      rgba(255,255,255,0.02) 1px,
+      transparent 1px,
+      transparent 4px
+    );
+}
+:root[data-theme="projector"] .panel { border-width: 2px; }
+:root[data-theme="projector"] .tab[aria-selected="true"] { border-bottom-width: 3px; }
+:root[data-theme="projector"] .cand-bar > span {
+  background: var(--amber);
+}
+:root[data-theme="projector"] .cand-row.chosen .cand-bar > span {
+  background: var(--green);
+}
+:root[data-theme="projector"] .cand-row.flashed .cand-bar > span {
+  background: var(--cyan);
+}
+
+/* ============================================================ */
 /*  HEADER                                                       */
 /* ============================================================ */
 .site-header {
@@ -78,6 +188,59 @@ body::before {
   border-bottom: 1px solid var(--line);
   background: linear-gradient(180deg, var(--bg-2), var(--bg));
   position: relative;
+}
+.header-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+.header-text { flex: 1; min-width: 0; }
+.theme-switch {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+}
+.theme-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-right: 4px;
+  white-space: nowrap;
+}
+.theme-btn {
+  appearance: none;
+  border: 1px solid var(--line);
+  background: var(--bg-2);
+  color: var(--ink-soft);
+  font: inherit;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 6px 10px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+}
+.theme-btn:hover {
+  color: var(--ink);
+  border-color: var(--cyan);
+}
+.theme-btn[aria-pressed="true"] {
+  color: var(--cyan);
+  border-color: var(--cyan);
+  background: rgba(0, 229, 255, 0.08);
+  box-shadow: var(--glow-cyan);
+}
+:root[data-theme="paper"] .theme-btn[aria-pressed="true"] {
+  color: var(--magenta);
+  border-color: var(--magenta);
+  background: rgba(184, 37, 95, 0.08);
 }
 .site-header::after {
   content: "";
@@ -983,6 +1146,10 @@ input[type=range] {
   .site-title { font-size: 18px; }
   .panel { padding: 16px 14px; }
   .panel-title { font-size: 16px; }
+
+  .header-row { flex-direction: column; gap: 10px; }
+  .theme-switch { align-self: flex-start; }
+  .theme-btn { padding: 5px 9px; font-size: 10.5px; }
 
   .t1-controls { grid-template-columns: 1fr; gap: 14px; }
   .cand-row {
