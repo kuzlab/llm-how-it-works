@@ -17,7 +17,66 @@ window.APP_DATA = {
             { token: "不安定", prob: 0.08 },
             { token: "微妙",   prob: 0.05 }
           ],
-          chosen: "いい"
+          chosen: "いい",
+          branches: {
+            "悪い": [
+              {
+                context: "今日は天気が悪い",
+                candidates: [
+                  { token: "から",   prob: 0.40 },
+                  { token: "ので",   prob: 0.35 },
+                  { token: "けど",   prob: 0.15 },
+                  { token: "し",     prob: 0.07 },
+                  { token: "が",     prob: 0.03 }
+                ],
+                chosen: "から"
+              },
+              {
+                context: "今日は天気が悪いから",
+                candidates: [
+                  { token: "家",       prob: 0.35 },
+                  { token: "部屋",     prob: 0.20 },
+                  { token: "外出",     prob: 0.15 },
+                  { token: "ゴロゴロ", prob: 0.15 },
+                  { token: "散歩",     prob: 0.15 }
+                ],
+                chosen: "家"
+              },
+              {
+                context: "今日は天気が悪いから家",
+                candidates: [
+                  { token: "で",     prob: 0.55 },
+                  { token: "に",     prob: 0.30 },
+                  { token: "でも",   prob: 0.10 },
+                  { token: "でね",   prob: 0.03 },
+                  { token: "から",   prob: 0.02 }
+                ],
+                chosen: "で"
+              },
+              {
+                context: "今日は天気が悪いから家で",
+                candidates: [
+                  { token: "ゴロゴロ", prob: 0.35 },
+                  { token: "読書",     prob: 0.25 },
+                  { token: "過ごそう", prob: 0.20 },
+                  { token: "寝よう",   prob: 0.12 },
+                  { token: "仕事",     prob: 0.08 }
+                ],
+                chosen: "ゴロゴロ"
+              },
+              {
+                context: "今日は天気が悪いから家でゴロゴロ",
+                candidates: [
+                  { token: "しよう",   prob: 0.55 },
+                  { token: "する",     prob: 0.25 },
+                  { token: "してる",   prob: 0.10 },
+                  { token: "したい",   prob: 0.07 },
+                  { token: "しよう。", prob: 0.03 }
+                ],
+                chosen: "しよう"
+              }
+            ]
+          }
         },
         {
           context: "今日は天気がいい",
@@ -80,7 +139,44 @@ window.APP_DATA = {
             { token: "王様",       prob: 0.10 },
             { token: "猫",         prob: 0.05 }
           ],
-          chosen: "おじいさん"
+          chosen: "おじいさん",
+          branches: {
+            "猫": [
+              {
+                context: "むかしむかし、あるところに猫",
+                candidates: [
+                  { token: "が", prob: 0.55 },
+                  { token: "と", prob: 0.20 },
+                  { token: "の", prob: 0.10 },
+                  { token: "は", prob: 0.10 },
+                  { token: "、", prob: 0.05 }
+                ],
+                chosen: "が"
+              },
+              {
+                context: "むかしむかし、あるところに猫が",
+                candidates: [
+                  { token: "住んで",   prob: 0.40 },
+                  { token: "住み",     prob: 0.25 },
+                  { token: "暮らして", prob: 0.20 },
+                  { token: "いて",     prob: 0.10 },
+                  { token: "一匹",     prob: 0.05 }
+                ],
+                chosen: "住んで"
+              },
+              {
+                context: "むかしむかし、あるところに猫が住んで",
+                candidates: [
+                  { token: "いました",   prob: 0.65 },
+                  { token: "おりました", prob: 0.20 },
+                  { token: "いる",       prob: 0.07 },
+                  { token: "いた",       prob: 0.05 },
+                  { token: "い",         prob: 0.03 }
+                ],
+                chosen: "いました"
+              }
+            ]
+          }
         },
         {
           context: "むかしむかし、あるところにおじいさん",
@@ -154,7 +250,33 @@ window.APP_DATA = {
             { token: "ドーナツ", prob: 0.18 },
             { token: "塩",       prob: 0.05 }
           ],
-          chosen: "ケーキ"
+          chosen: "ケーキ",
+          branches: {
+            "塩": [
+              {
+                context: "コーヒーに合うのは塩",
+                candidates: [
+                  { token: "なんて",   prob: 0.35 },
+                  { token: "だ",       prob: 0.20 },
+                  { token: "です",     prob: 0.20 },
+                  { token: "と",       prob: 0.15 },
+                  { token: "、",       prob: 0.10 }
+                ],
+                chosen: "なんて"
+              },
+              {
+                context: "コーヒーに合うのは塩なんて",
+                candidates: [
+                  { token: "信じられない",         prob: 0.35 },
+                  { token: "言う",                 prob: 0.25 },
+                  { token: "思う",                 prob: 0.20 },
+                  { token: "変わってる",           prob: 0.15 },
+                  { token: "聞いたことない",       prob: 0.05 }
+                ],
+                chosen: "信じられない"
+              }
+            ]
+          }
         },
         {
           context: "コーヒーに合うのはケーキ",
@@ -356,6 +478,132 @@ window.APP_DATA = {
           ],
           chosen: "いけない"
         }
+      ]
+    },
+
+    {
+      id: "lowprob",
+      title: "意外な選択(雨の日)",
+      prompt: "雨の日に",
+      steps: [
+        {
+          context: "雨の日に",
+          candidates: [
+            { token: "傘",     prob: 0.50 },
+            { token: "家",     prob: 0.25 },
+            { token: "カフェ", prob: 0.10 },
+            { token: "読書",   prob: 0.10 },
+            { token: "走る",   prob: 0.05 }
+          ],
+          // ※ あえて確率の低い候補を選ばせている見本(LLMはたまにこういう道も通る)
+          chosen: "走る"
+        },
+        {
+          context: "雨の日に走る",
+          candidates: [
+            { token: "の",       prob: 0.30 },
+            { token: "が",       prob: 0.25 },
+            { token: "と",       prob: 0.20 },
+            { token: "なんて",   prob: 0.15 },
+            { token: "って",     prob: 0.10 }
+          ],
+          chosen: "なんて"
+        },
+        {
+          context: "雨の日に走るなんて",
+          candidates: [
+            { token: "最高",         prob: 0.40 },
+            { token: "楽しい",       prob: 0.30 },
+            { token: "クレイジー",   prob: 0.15 },
+            { token: "気持ちいい",   prob: 0.10 },
+            { token: "変",           prob: 0.05 }
+          ],
+          chosen: "気持ちいい"
+        }
+      ]
+    }
+  ],
+
+  // --- タブ4: 両側から考える(BERT 風) ----------------------------------------
+  // 同じ穴あき文に対して「左だけ見たとき」と「両側見たとき」の分布を比較する。
+  // 各候補配列の prob 合計は 1.0。
+  bert: [
+    {
+      id: "weather",
+      title: "天気の話",
+      left: "今日は天気が",
+      right: "から散歩に行こう",
+      leftOnly: [
+        { token: "いい",     prob: 0.30 },
+        { token: "悪い",     prob: 0.20 },
+        { token: "良くて",   prob: 0.15 },
+        { token: "晴れて",   prob: 0.12 },
+        { token: "微妙",     prob: 0.10 },
+        { token: "不安定",   prob: 0.08 },
+        { token: "曇って",   prob: 0.05 }
+      ],
+      bidirectional: [
+        { token: "いい",     prob: 0.78 },
+        { token: "良くて",   prob: 0.12 },
+        { token: "晴れて",   prob: 0.07 },
+        { token: "悪い",     prob: 0.01 },
+        { token: "曇って",   prob: 0.01 },
+        { token: "微妙",     prob: 0.01 },
+        { token: "不安定",   prob: 0.00 }
+      ]
+    },
+    {
+      id: "fairytale",
+      title: "昔話",
+      left: "むかしむかし、あるところに",
+      right: "とおばあさんが住んでいました",
+      leftOnly: [
+        { token: "おじいさん", prob: 0.30 },
+        { token: "若者",       prob: 0.15 },
+        { token: "王様",       prob: 0.12 },
+        { token: "旅人",       prob: 0.10 },
+        { token: "猫",         prob: 0.10 },
+        { token: "おばあさん", prob: 0.08 },
+        { token: "お姫様",     prob: 0.08 },
+        { token: "農夫",       prob: 0.07 }
+      ],
+      bidirectional: [
+        { token: "おじいさん", prob: 0.88 },
+        { token: "若者",       prob: 0.04 },
+        { token: "農夫",       prob: 0.03 },
+        { token: "王様",       prob: 0.02 },
+        { token: "旅人",       prob: 0.02 },
+        { token: "猫",         prob: 0.01 },
+        { token: "お姫様",     prob: 0.00 },
+        { token: "おばあさん", prob: 0.00 }
+      ]
+    },
+    {
+      id: "sweets",
+      title: "甘いもの",
+      left: "甘い",
+      right: "を食べながら、苦いコーヒーを飲む",
+      leftOnly: [
+        { token: "ケーキ", prob: 0.18 },
+        { token: "果物",   prob: 0.15 },
+        { token: "リンゴ", prob: 0.12 },
+        { token: "チョコ", prob: 0.10 },
+        { token: "ジャム", prob: 0.10 },
+        { token: "プリン", prob: 0.10 },
+        { token: "言葉",   prob: 0.10 },
+        { token: "香り",   prob: 0.08 },
+        { token: "歌",     prob: 0.07 }
+      ],
+      bidirectional: [
+        { token: "ケーキ", prob: 0.42 },
+        { token: "チョコ", prob: 0.22 },
+        { token: "プリン", prob: 0.15 },
+        { token: "リンゴ", prob: 0.10 },
+        { token: "ジャム", prob: 0.08 },
+        { token: "果物",   prob: 0.02 },
+        { token: "香り",   prob: 0.01 },
+        { token: "言葉",   prob: 0.00 },
+        { token: "歌",     prob: 0.00 }
       ]
     }
   ],

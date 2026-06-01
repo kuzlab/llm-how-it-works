@@ -4,21 +4,25 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>LLM の仕組み体験アプリ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header class="site-header">
     <div class="wrap">
       <h1 class="site-title">LLM の仕組み、のぞいてみる</h1>
-      <p class="site-sub">大規模言語モデルが内部で何をしているかを、3 つの視点で体験する小さな教材です。</p>
+      <p class="site-sub">大規模言語モデルが内部で何をしているかを、4 つの視点で体験する小さな教材です。</p>
     </div>
   </header>
 
   <nav class="tabs" role="tablist" aria-label="セクション切り替え">
     <div class="wrap tabs-inner">
-      <button class="tab" role="tab" data-tab="tab1" aria-selected="true">① 次の単語をあてる</button>
-      <button class="tab" role="tab" data-tab="tab2" aria-selected="false">② 言葉を分解する</button>
-      <button class="tab" role="tab" data-tab="tab3" aria-selected="false">③ 意味の地図</button>
+      <button class="tab" role="tab" data-tab="tab1" aria-selected="true">01 / 次の単語をあてる</button>
+      <button class="tab" role="tab" data-tab="tab2" aria-selected="false">02 / 言葉を分解する</button>
+      <button class="tab" role="tab" data-tab="tab3" aria-selected="false">03 / 意味の地図</button>
+      <button class="tab" role="tab" data-tab="tab4" aria-selected="false">04 / 両側から考える</button>
     </div>
   </nav>
 
@@ -31,6 +35,7 @@
       <p class="panel-desc">
         LLM は文章を作るとき、<strong>次に来そうな単語を確率で予測</strong>して、その中から 1 つを選ぶ ― この作業をひたすら繰り返しています。
         ここでは、用意した見本文を 1 語ずつ組み立てながら、各時点で LLM が考えている候補を覗いてみましょう。
+        <span class="note">候補の行をクリックすると、その単語を選んで道を分岐できます。</span>
       </p>
 
       <div class="t1-controls">
@@ -46,7 +51,7 @@
           </span>
           <input type="range" id="t1-temp" min="0.1" max="1.5" step="0.05" value="1.0">
           <div class="temp-legend">
-            <span>低温 ← 自信がある / 無難</span>
+            <span>低温 ← 自信 / 無難</span>
             <span>迷う / 自由 → 高温</span>
           </div>
         </div>
@@ -121,6 +126,7 @@
         LLM は言葉を <strong>「数のかたまり(ベクトル)」</strong> として扱います。
         近い場所にある言葉ほど、LLM にとって意味が似ています。
         単語をタップしてみると、意味の近い言葉が浮かび上がります。
+        <span class="note">下の「文脈を足す」で語を追加すると、地図全体が文脈に引き寄せられて変形します(文脈に応じて意味が動くイメージ)。</span>
       </p>
 
       <div class="t3-legend" id="t3-legend"></div>
@@ -130,6 +136,62 @@
       </div>
 
       <p class="t3-hint" id="t3-hint">単語をタップ／ホバーすると、意味の近い 3 語が線でつながります。</p>
+
+      <div class="t3-context">
+        <div class="t3-context-head">
+          <span class="t3-context-title">文脈を足す ― 地図が動く</span>
+          <div class="t3-context-actions">
+            <select id="t3-context-add">
+              <option value="">+ 文脈に語を追加</option>
+            </select>
+            <button class="btn ghost" id="t3-context-reset">リセット</button>
+          </div>
+        </div>
+        <div class="t3-context-bag" id="t3-context-bag"></div>
+      </div>
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- タブ4: 両側から考える(BERT 風)                                  -->
+    <!-- ============================================================== -->
+    <section class="panel" id="tab4" role="tabpanel" hidden>
+      <h2 class="panel-title">両側から考える</h2>
+      <p class="panel-desc">
+        タブ1のモデルは <strong>左から右へ</strong>「次の単語」を予測します。
+        一方、BERT のようなモデルは <strong>文の両側を同時に</strong> 見て、真ん中の穴に何が入るかを当てます。
+        同じ穴でも、見える範囲が広いほど候補は <strong>鋭く絞られる</strong> ― それを比べてみましょう。
+        <span class="note">○○ の部分が「マスク(穴)」です。左/両側、それぞれの予測分布を並べて表示します。</span>
+      </p>
+
+      <div class="t4-controls">
+        <label class="field">
+          <span class="field-label">穴あき文</span>
+          <select id="t4-select"></select>
+        </label>
+      </div>
+
+      <div class="t4-stage">
+        <div class="t4-sentence" id="t4-sentence" aria-live="polite"></div>
+      </div>
+
+      <div class="t4-grid">
+        <div class="t4-col left">
+          <div class="t4-col-head">
+            <span class="t4-col-tag">左だけ見る</span>
+            <span class="t4-col-sub">GPT 風 / 自己回帰</span>
+          </div>
+          <div class="t4-rows" id="t4-left"></div>
+        </div>
+        <div class="t4-col both">
+          <div class="t4-col-head">
+            <span class="t4-col-tag">両側を見る</span>
+            <span class="t4-col-sub">BERT 風 / マスク言語モデル</span>
+          </div>
+          <div class="t4-rows" id="t4-both"></div>
+        </div>
+      </div>
+
+      <p class="t4-note" id="t4-note"></p>
     </section>
 
     <p class="disclaimer">
