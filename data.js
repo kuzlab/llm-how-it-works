@@ -294,7 +294,36 @@ window.APP_DATA = {
                   { token: "助かる",     prob: 0.10 },
                   { token: "公園",       prob: 0.05 }
                 ],
-                chosen: "出かけよう"
+                chosen: "出かけよう",
+                branches: {
+                  "公園": [
+                    {
+                      context: "今日は天気がいいので公園",
+                      candidates: [
+                        { token: "に", prob: 0.55 },
+                        { token: "へ", prob: 0.25 },
+                        { token: "で", prob: 0.10 },
+                        { token: "を", prob: 0.07 },
+                        { token: "が", prob: 0.03 }
+                      ],
+                      chosen: "に"
+                    },
+                    {
+                      context: "今日は天気がいいので公園に",
+                      candidates: [
+                        { token: "行こう",     prob: 0.50 },
+                        { token: "行きたい",   prob: 0.25 },
+                        { token: "出かけよう", prob: 0.15 },
+                        { token: "行く",       prob: 0.07 },
+                        { token: "寄ろう",     prob: 0.03 }
+                      ],
+                      chosen: "行こう"
+                    }
+                  ],
+                  "散歩しよう": [],
+                  "嬉しい": [],
+                  "助かる": []
+                }
               }
             ],
             "ね": [
