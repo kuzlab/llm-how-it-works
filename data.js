@@ -40,7 +40,46 @@ window.APP_DATA = {
                   { token: "だ",   prob: 0.10 },
                   { token: "よく", prob: 0.05 }
                 ],
-                chosen: "が"
+                chosen: "が",
+                branches: {
+                  "の": [
+                    {
+                      context: "今日は天気が良くて気持ちの",
+                      candidates: [
+                        { token: "いい",       prob: 0.55 },
+                        { token: "良い",       prob: 0.20 },
+                        { token: "軽い",       prob: 0.10 },
+                        { token: "すっきり",   prob: 0.10 },
+                        { token: "高揚",       prob: 0.05 }
+                      ],
+                      chosen: "いい"
+                    },
+                    {
+                      context: "今日は天気が良くて気持ちのいい",
+                      candidates: [
+                        { token: "日",     prob: 0.55 },
+                        { token: "朝",     prob: 0.20 },
+                        { token: "一日",   prob: 0.15 },
+                        { token: "時間",   prob: 0.07 },
+                        { token: "気分",   prob: 0.03 }
+                      ],
+                      chosen: "日"
+                    },
+                    {
+                      context: "今日は天気が良くて気持ちのいい日",
+                      candidates: [
+                        { token: "だ",       prob: 0.50 },
+                        { token: "です",     prob: 0.30 },
+                        { token: "ね",       prob: 0.10 },
+                        { token: "。",       prob: 0.07 },
+                        { token: "になる",   prob: 0.03 }
+                      ],
+                      chosen: "だ"
+                    }
+                  ],
+                  "いい": [],
+                  "だ": []
+                }
               },
               {
                 context: "今日は天気が良くて気持ちが",
@@ -75,7 +114,36 @@ window.APP_DATA = {
                   { token: "よ",   prob: 0.07 },
                   { token: "わ",   prob: 0.03 }
                 ],
-                chosen: "ね"
+                chosen: "ね",
+                branches: {
+                  "から": [
+                    {
+                      context: "今日は天気が不安定だから",
+                      candidates: [
+                        { token: "心配", prob: 0.40 },
+                        { token: "傘",   prob: 0.25 },
+                        { token: "嫌だ", prob: 0.15 },
+                        { token: "気を", prob: 0.12 },
+                        { token: "注意", prob: 0.08 }
+                      ],
+                      chosen: "心配"
+                    },
+                    {
+                      context: "今日は天気が不安定だから心配",
+                      candidates: [
+                        { token: "だ", prob: 0.55 },
+                        { token: "な", prob: 0.20 },
+                        { token: "だね", prob: 0.10 },
+                        { token: "になる", prob: 0.10 },
+                        { token: "だよ", prob: 0.05 }
+                      ],
+                      chosen: "だ"
+                    }
+                  ],
+                  "。": [],
+                  "よ": [],
+                  "わ": []
+                }
               }
             ],
             "微妙": [
@@ -99,7 +167,25 @@ window.APP_DATA = {
                   { token: "どうしよう",   prob: 0.12 },
                   { token: "残念",         prob: 0.08 }
                 ],
-                chosen: "困る"
+                chosen: "困る",
+                branches: {
+                  "心配": [
+                    {
+                      context: "今日は天気が微妙で心配",
+                      candidates: [
+                        { token: "だ",     prob: 0.55 },
+                        { token: "な",     prob: 0.20 },
+                        { token: "だね",   prob: 0.10 },
+                        { token: "になる", prob: 0.10 },
+                        { token: "だよ",   prob: 0.05 }
+                      ],
+                      chosen: "だ"
+                    }
+                  ],
+                  "嫌だ": [],
+                  "どうしよう": [],
+                  "残念": []
+                }
               }
             ],
             "悪い": [
@@ -123,7 +209,33 @@ window.APP_DATA = {
                   { token: "ゴロゴロ", prob: 0.15 },
                   { token: "散歩",     prob: 0.15 }
                 ],
-                chosen: "家"
+                chosen: "家",
+                branches: {
+                  "部屋": [
+                    {
+                      context: "今日は天気が悪いから部屋",
+                      candidates: [
+                        { token: "で",   prob: 0.55 },
+                        { token: "に",   prob: 0.25 },
+                        { token: "の",   prob: 0.10 },
+                        { token: "を",   prob: 0.07 },
+                        { token: "から", prob: 0.03 }
+                      ],
+                      chosen: "で"
+                    },
+                    {
+                      context: "今日は天気が悪いから部屋で",
+                      candidates: [
+                        { token: "過ごそう", prob: 0.40 },
+                        { token: "ゆっくり", prob: 0.25 },
+                        { token: "読書",     prob: 0.15 },
+                        { token: "寝よう",   prob: 0.12 },
+                        { token: "仕事",     prob: 0.08 }
+                      ],
+                      chosen: "過ごそう"
+                    }
+                  ]
+                }
               },
               {
                 context: "今日は天気が悪いから家",
@@ -170,7 +282,49 @@ window.APP_DATA = {
             { token: "です", prob: 0.12 },
             { token: "。",   prob: 0.08 }
           ],
-          chosen: "から"
+          chosen: "から",
+          branches: {
+            "ので": [
+              {
+                context: "今日は天気がいいので",
+                candidates: [
+                  { token: "出かけよう", prob: 0.45 },
+                  { token: "散歩しよう", prob: 0.25 },
+                  { token: "嬉しい",     prob: 0.15 },
+                  { token: "助かる",     prob: 0.10 },
+                  { token: "公園",       prob: 0.05 }
+                ],
+                chosen: "出かけよう"
+              }
+            ],
+            "ね": [
+              {
+                context: "今日は天気がいいね",
+                candidates: [
+                  { token: "。", prob: 0.55 },
+                  { token: "！", prob: 0.20 },
+                  { token: "♪", prob: 0.10 },
+                  { token: "～", prob: 0.10 },
+                  { token: "、", prob: 0.05 }
+                ],
+                chosen: "。"
+              }
+            ],
+            "です": [
+              {
+                context: "今日は天気がいいです",
+                candidates: [
+                  { token: "ね",   prob: 0.55 },
+                  { token: "よ",   prob: 0.20 },
+                  { token: "。",   prob: 0.15 },
+                  { token: "か",   prob: 0.07 },
+                  { token: "が",   prob: 0.03 }
+                ],
+                chosen: "ね"
+              }
+            ],
+            "。": []
+          }
         },
         {
           context: "今日は天気がいいから",
@@ -181,7 +335,83 @@ window.APP_DATA = {
             { token: "外",     prob: 0.16 },
             { token: "洗濯",   prob: 0.12 }
           ],
-          chosen: "散歩"
+          chosen: "散歩",
+          branches: {
+            "出かけ": [
+              {
+                context: "今日は天気がいいから出かけ",
+                candidates: [
+                  { token: "よう",     prob: 0.55 },
+                  { token: "たい",     prob: 0.20 },
+                  { token: "ましょう", prob: 0.15 },
+                  { token: "ない",     prob: 0.07 },
+                  { token: "る",       prob: 0.03 }
+                ],
+                chosen: "よう"
+              }
+            ],
+            "公園": [
+              {
+                context: "今日は天気がいいから公園",
+                candidates: [
+                  { token: "に", prob: 0.55 },
+                  { token: "へ", prob: 0.25 },
+                  { token: "で", prob: 0.10 },
+                  { token: "を", prob: 0.07 },
+                  { token: "が", prob: 0.03 }
+                ],
+                chosen: "に"
+              },
+              {
+                context: "今日は天気がいいから公園に",
+                candidates: [
+                  { token: "行こう",     prob: 0.50 },
+                  { token: "行きたい",   prob: 0.25 },
+                  { token: "出かけよう", prob: 0.15 },
+                  { token: "行く",       prob: 0.07 },
+                  { token: "寄ろう",     prob: 0.03 }
+                ],
+                chosen: "行こう"
+              }
+            ],
+            "外": [
+              {
+                context: "今日は天気がいいから外",
+                candidates: [
+                  { token: "に", prob: 0.50 },
+                  { token: "へ", prob: 0.25 },
+                  { token: "で", prob: 0.15 },
+                  { token: "を", prob: 0.07 },
+                  { token: "が", prob: 0.03 }
+                ],
+                chosen: "に"
+              },
+              {
+                context: "今日は天気がいいから外に",
+                candidates: [
+                  { token: "出よう",     prob: 0.45 },
+                  { token: "行こう",     prob: 0.30 },
+                  { token: "出る",       prob: 0.10 },
+                  { token: "出たい",     prob: 0.10 },
+                  { token: "出かけよう", prob: 0.05 }
+                ],
+                chosen: "出よう"
+              }
+            ],
+            "洗濯": [
+              {
+                context: "今日は天気がいいから洗濯",
+                candidates: [
+                  { token: "しよう",   prob: 0.55 },
+                  { token: "する",     prob: 0.20 },
+                  { token: "日和",     prob: 0.12 },
+                  { token: "したい",   prob: 0.08 },
+                  { token: "が",       prob: 0.05 }
+                ],
+                chosen: "しよう"
+              }
+            ]
+          }
         },
         {
           context: "今日は天気がいいから散歩",
@@ -192,7 +422,61 @@ window.APP_DATA = {
             { token: "が",   prob: 0.07 },
             { token: "を",   prob: 0.03 }
           ],
-          chosen: "に"
+          chosen: "に",
+          branches: {
+            "へ": [
+              {
+                context: "今日は天気がいいから散歩へ",
+                candidates: [
+                  { token: "行こう",     prob: 0.55 },
+                  { token: "行きたい",   prob: 0.20 },
+                  { token: "出かけよう", prob: 0.15 },
+                  { token: "出る",       prob: 0.07 },
+                  { token: "行く",       prob: 0.03 }
+                ],
+                chosen: "行こう"
+              }
+            ],
+            "でも": [
+              {
+                context: "今日は天気がいいから散歩でも",
+                candidates: [
+                  { token: "行こう",     prob: 0.55 },
+                  { token: "しよう",     prob: 0.20 },
+                  { token: "するか",     prob: 0.15 },
+                  { token: "どうかな",   prob: 0.07 },
+                  { token: "出かけよう", prob: 0.03 }
+                ],
+                chosen: "行こう"
+              }
+            ],
+            "が": [
+              {
+                context: "今日は天気がいいから散歩が",
+                candidates: [
+                  { token: "楽しみ",   prob: 0.45 },
+                  { token: "気持ちいい", prob: 0.25 },
+                  { token: "したい",   prob: 0.15 },
+                  { token: "できる",   prob: 0.10 },
+                  { token: "最高",     prob: 0.05 }
+                ],
+                chosen: "楽しみ"
+              }
+            ],
+            "を": [
+              {
+                context: "今日は天気がいいから散歩を",
+                candidates: [
+                  { token: "しよう",     prob: 0.45 },
+                  { token: "楽しもう",   prob: 0.30 },
+                  { token: "する",       prob: 0.15 },
+                  { token: "したい",     prob: 0.07 },
+                  { token: "計画",       prob: 0.03 }
+                ],
+                chosen: "しよう"
+              }
+            ]
+          }
         },
         {
           context: "今日は天気がいいから散歩に",
@@ -245,7 +529,59 @@ window.APP_DATA = {
                   { token: "おりまして",   prob: 0.10 },
                   { token: "いて",         prob: 0.05 }
                 ],
-                chosen: "住んで"
+                chosen: "住んで",
+                branches: {
+                  "一人": [
+                    {
+                      context: "むかしむかし、あるところにおばあさんが一人",
+                      candidates: [
+                        { token: "で",         prob: 0.50 },
+                        { token: "暮らして",   prob: 0.25 },
+                        { token: "ぼっち",     prob: 0.10 },
+                        { token: "きりで",     prob: 0.10 },
+                        { token: "住んで",     prob: 0.05 }
+                      ],
+                      chosen: "で"
+                    },
+                    {
+                      context: "むかしむかし、あるところにおばあさんが一人で",
+                      candidates: [
+                        { token: "暮らして", prob: 0.45 },
+                        { token: "住んで",   prob: 0.30 },
+                        { token: "いました", prob: 0.15 },
+                        { token: "おりました", prob: 0.07 },
+                        { token: "いて",     prob: 0.03 }
+                      ],
+                      chosen: "暮らして"
+                    },
+                    {
+                      context: "むかしむかし、あるところにおばあさんが一人で暮らして",
+                      candidates: [
+                        { token: "いました",   prob: 0.65 },
+                        { token: "おりました", prob: 0.20 },
+                        { token: "いた",       prob: 0.08 },
+                        { token: "いる",       prob: 0.05 },
+                        { token: "い",         prob: 0.02 }
+                      ],
+                      chosen: "いました"
+                    }
+                  ],
+                  "暮らして": [
+                    {
+                      context: "むかしむかし、あるところにおばあさんが暮らして",
+                      candidates: [
+                        { token: "いました", prob: 0.65 },
+                        { token: "おりました", prob: 0.20 },
+                        { token: "いた",     prob: 0.07 },
+                        { token: "いる",     prob: 0.05 },
+                        { token: "い",       prob: 0.03 }
+                      ],
+                      chosen: "いました"
+                    }
+                  ],
+                  "おりまして": [],
+                  "いて": []
+                }
               },
               {
                 context: "むかしむかし、あるところにおばあさんが住んで",
@@ -280,7 +616,59 @@ window.APP_DATA = {
                   { token: "そびえて",   prob: 0.07 },
                   { token: "一つ",       prob: 0.03 }
                 ],
-                chosen: "ありました"
+                chosen: "ありました",
+                branches: {
+                  "あって": [
+                    {
+                      context: "むかしむかし、あるところにお城があって",
+                      candidates: [
+                        { token: "王様", prob: 0.45 },
+                        { token: "中に", prob: 0.20 },
+                        { token: "そこに", prob: 0.15 },
+                        { token: "お姫様", prob: 0.15 },
+                        { token: "魔女", prob: 0.05 }
+                      ],
+                      chosen: "王様"
+                    },
+                    {
+                      context: "むかしむかし、あるところにお城があって王様",
+                      candidates: [
+                        { token: "が", prob: 0.60 },
+                        { token: "と", prob: 0.15 },
+                        { token: "は", prob: 0.15 },
+                        { token: "の", prob: 0.07 },
+                        { token: "に", prob: 0.03 }
+                      ],
+                      chosen: "が"
+                    },
+                    {
+                      context: "むかしむかし、あるところにお城があって王様が",
+                      candidates: [
+                        { token: "いました", prob: 0.45 },
+                        { token: "住んで",   prob: 0.30 },
+                        { token: "おりました", prob: 0.15 },
+                        { token: "一人",     prob: 0.07 },
+                        { token: "暮らして", prob: 0.03 }
+                      ],
+                      chosen: "いました"
+                    }
+                  ],
+                  "建って": [
+                    {
+                      context: "むかしむかし、あるところにお城が建って",
+                      candidates: [
+                        { token: "いました",   prob: 0.65 },
+                        { token: "おりました", prob: 0.20 },
+                        { token: "いた",       prob: 0.07 },
+                        { token: "いる",       prob: 0.05 },
+                        { token: "い",         prob: 0.03 }
+                      ],
+                      chosen: "いました"
+                    }
+                  ],
+                  "そびえて": [],
+                  "一つ": []
+                }
               }
             ],
             "王様": [
@@ -361,7 +749,48 @@ window.APP_DATA = {
                   { token: "いて",     prob: 0.10 },
                   { token: "一匹",     prob: 0.05 }
                 ],
-                chosen: "住んで"
+                chosen: "住んで",
+                branches: {
+                  "暮らして": [
+                    {
+                      context: "むかしむかし、あるところに猫が暮らして",
+                      candidates: [
+                        { token: "いました",   prob: 0.65 },
+                        { token: "おりました", prob: 0.20 },
+                        { token: "いた",       prob: 0.07 },
+                        { token: "いる",       prob: 0.05 },
+                        { token: "い",         prob: 0.03 }
+                      ],
+                      chosen: "いました"
+                    }
+                  ],
+                  "住み": [
+                    {
+                      context: "むかしむかし、あるところに猫が住み",
+                      candidates: [
+                        { token: "ついて", prob: 0.40 },
+                        { token: "ました", prob: 0.30 },
+                        { token: "始めました", prob: 0.15 },
+                        { token: "込んで", prob: 0.10 },
+                        { token: "ます",   prob: 0.05 }
+                      ],
+                      chosen: "ついて"
+                    },
+                    {
+                      context: "むかしむかし、あるところに猫が住みついて",
+                      candidates: [
+                        { token: "いました",   prob: 0.65 },
+                        { token: "おりました", prob: 0.20 },
+                        { token: "いた",       prob: 0.07 },
+                        { token: "いる",       prob: 0.05 },
+                        { token: "い",         prob: 0.03 }
+                      ],
+                      chosen: "いました"
+                    }
+                  ],
+                  "いて": [],
+                  "一匹": []
+                }
               },
               {
                 context: "むかしむかし、あるところに猫が住んで",
@@ -386,7 +815,81 @@ window.APP_DATA = {
             { token: "、", prob: 0.07 },
             { token: "の", prob: 0.03 }
           ],
-          chosen: "と"
+          chosen: "と",
+          branches: {
+            "が": [
+              {
+                context: "むかしむかし、あるところにおじいさんが",
+                candidates: [
+                  { token: "住んで",     prob: 0.45 },
+                  { token: "一人",       prob: 0.25 },
+                  { token: "暮らして",   prob: 0.15 },
+                  { token: "おりました", prob: 0.10 },
+                  { token: "いて",       prob: 0.05 }
+                ],
+                chosen: "住んで"
+              },
+              {
+                context: "むかしむかし、あるところにおじいさんが住んで",
+                candidates: [
+                  { token: "いました",   prob: 0.65 },
+                  { token: "おりました", prob: 0.20 },
+                  { token: "いる",       prob: 0.08 },
+                  { token: "いた",       prob: 0.05 },
+                  { token: "い",         prob: 0.02 }
+                ],
+                chosen: "いました"
+              }
+            ],
+            "は": [
+              {
+                context: "むかしむかし、あるところにおじいさんは",
+                candidates: [
+                  { token: "一人",       prob: 0.40 },
+                  { token: "静かに",     prob: 0.25 },
+                  { token: "ひっそりと", prob: 0.20 },
+                  { token: "山で",       prob: 0.10 },
+                  { token: "村で",       prob: 0.05 }
+                ],
+                chosen: "一人"
+              },
+              {
+                context: "むかしむかし、あるところにおじいさんは一人",
+                candidates: [
+                  { token: "で",         prob: 0.50 },
+                  { token: "暮らして",   prob: 0.25 },
+                  { token: "ぼっち",     prob: 0.10 },
+                  { token: "だけで",     prob: 0.10 },
+                  { token: "きりで",     prob: 0.05 }
+                ],
+                chosen: "で"
+              },
+              {
+                context: "むかしむかし、あるところにおじいさんは一人で",
+                candidates: [
+                  { token: "暮らして", prob: 0.45 },
+                  { token: "住んで",   prob: 0.30 },
+                  { token: "いました", prob: 0.15 },
+                  { token: "おりました", prob: 0.07 },
+                  { token: "いて",     prob: 0.03 }
+                ],
+                chosen: "暮らして"
+              },
+              {
+                context: "むかしむかし、あるところにおじいさんは一人で暮らして",
+                candidates: [
+                  { token: "いました",   prob: 0.65 },
+                  { token: "おりました", prob: 0.20 },
+                  { token: "いた",       prob: 0.08 },
+                  { token: "いる",       prob: 0.05 },
+                  { token: "い",         prob: 0.02 }
+                ],
+                chosen: "いました"
+              }
+            ],
+            "、": [],
+            "の": []
+          }
         },
         {
           context: "むかしむかし、あるところにおじいさんと",
@@ -397,7 +900,70 @@ window.APP_DATA = {
             { token: "動物",       prob: 0.08 },
             { token: "子ども",     prob: 0.04 }
           ],
-          chosen: "おばあさん"
+          chosen: "おばあさん",
+          branches: {
+            "仲間": [
+              {
+                context: "むかしむかし、あるところにおじいさんと仲間",
+                candidates: [
+                  { token: "が",   prob: 0.55 },
+                  { token: "たち", prob: 0.20 },
+                  { token: "は",   prob: 0.10 },
+                  { token: "の",   prob: 0.10 },
+                  { token: "で",   prob: 0.05 }
+                ],
+                chosen: "が"
+              },
+              {
+                context: "むかしむかし、あるところにおじいさんと仲間が",
+                candidates: [
+                  { token: "暮らして", prob: 0.40 },
+                  { token: "住んで",   prob: 0.30 },
+                  { token: "いて",     prob: 0.15 },
+                  { token: "おりました", prob: 0.10 },
+                  { token: "いました", prob: 0.05 }
+                ],
+                chosen: "暮らして"
+              },
+              {
+                context: "むかしむかし、あるところにおじいさんと仲間が暮らして",
+                candidates: [
+                  { token: "いました", prob: 0.65 },
+                  { token: "おりました", prob: 0.20 },
+                  { token: "いる",     prob: 0.07 },
+                  { token: "いた",     prob: 0.05 },
+                  { token: "い",       prob: 0.03 }
+                ],
+                chosen: "いました"
+              }
+            ],
+            "旅人": [
+              {
+                context: "むかしむかし、あるところにおじいさんと旅人",
+                candidates: [
+                  { token: "が",     prob: 0.55 },
+                  { token: "は",     prob: 0.20 },
+                  { token: "の",     prob: 0.10 },
+                  { token: "たち",   prob: 0.10 },
+                  { token: "二人",   prob: 0.05 }
+                ],
+                chosen: "が"
+              },
+              {
+                context: "むかしむかし、あるところにおじいさんと旅人が",
+                candidates: [
+                  { token: "出会いました", prob: 0.45 },
+                  { token: "話して",       prob: 0.20 },
+                  { token: "暮らして",     prob: 0.15 },
+                  { token: "いて",         prob: 0.10 },
+                  { token: "やってきました", prob: 0.10 }
+                ],
+                chosen: "出会いました"
+              }
+            ],
+            "動物": [],
+            "子ども": []
+          }
         },
         {
           context: "むかしむかし、あるところにおじいさんとおばあさん",
@@ -408,7 +974,47 @@ window.APP_DATA = {
             { token: "、", prob: 0.07 },
             { token: "で", prob: 0.03 }
           ],
-          chosen: "が"
+          chosen: "が",
+          branches: {
+            "と": [
+              {
+                context: "むかしむかし、あるところにおじいさんとおばあさんと",
+                candidates: [
+                  { token: "二人で",   prob: 0.45 },
+                  { token: "犬",       prob: 0.20 },
+                  { token: "猫",       prob: 0.15 },
+                  { token: "孫",       prob: 0.12 },
+                  { token: "暮らして", prob: 0.08 }
+                ],
+                chosen: "二人で"
+              },
+              {
+                context: "むかしむかし、あるところにおじいさんとおばあさんと二人で",
+                candidates: [
+                  { token: "暮らして", prob: 0.45 },
+                  { token: "住んで",   prob: 0.30 },
+                  { token: "いて",     prob: 0.10 },
+                  { token: "仲良く",   prob: 0.10 },
+                  { token: "おりました", prob: 0.05 }
+                ],
+                chosen: "暮らして"
+              },
+              {
+                context: "むかしむかし、あるところにおじいさんとおばあさんと二人で暮らして",
+                candidates: [
+                  { token: "いました",   prob: 0.65 },
+                  { token: "おりました", prob: 0.20 },
+                  { token: "いた",       prob: 0.07 },
+                  { token: "いる",       prob: 0.05 },
+                  { token: "い",         prob: 0.03 }
+                ],
+                chosen: "いました"
+              }
+            ],
+            "は": [],
+            "、": [],
+            "で": []
+          }
         },
         {
           context: "むかしむかし、あるところにおじいさんとおばあさんが",
@@ -419,7 +1025,25 @@ window.APP_DATA = {
             { token: "おりまして", prob: 0.10 },
             { token: "仲良く",     prob: 0.05 }
           ],
-          chosen: "住んで"
+          chosen: "住んで",
+          branches: {
+            "暮らして": [
+              {
+                context: "むかしむかし、あるところにおじいさんとおばあさんが暮らして",
+                candidates: [
+                  { token: "いました",   prob: 0.65 },
+                  { token: "おりました", prob: 0.20 },
+                  { token: "いた",       prob: 0.07 },
+                  { token: "いる",       prob: 0.05 },
+                  { token: "い",         prob: 0.03 }
+                ],
+                chosen: "いました"
+              }
+            ],
+            "いて": [],
+            "おりまして": [],
+            "仲良く": []
+          }
         },
         {
           context: "むかしむかし、あるところにおじいさんとおばあさんが住んで",
@@ -430,7 +1054,13 @@ window.APP_DATA = {
             { token: "い",         prob: 0.05 },
             { token: "いた",       prob: 0.02 }
           ],
-          chosen: "いました"
+          chosen: "いました",
+          branches: {
+            "おりました": [],
+            "いる": [],
+            "い": [],
+            "いた": []
+          }
         }
       ]
     },
@@ -472,7 +1102,13 @@ window.APP_DATA = {
                   { token: "よ", prob: 0.10 },
                   { token: "な", prob: 0.05 }
                 ],
-                chosen: "と"
+                chosen: "と",
+                branches: {
+                  "ね": [],
+                  "。": [],
+                  "よ": [],
+                  "な": []
+                }
               },
               {
                 context: "コーヒーに合うのはチョコだと",
@@ -507,7 +1143,13 @@ window.APP_DATA = {
                   { token: "。",   prob: 0.10 },
                   { token: "から", prob: 0.05 }
                 ],
-                chosen: "な"
+                chosen: "な",
+                branches: {
+                  "ね": [],
+                  "よ": [],
+                  "。": [],
+                  "から": []
+                }
               }
             ],
             "ドーナツ": [
@@ -531,7 +1173,25 @@ window.APP_DATA = {
                   { token: "アリ",       prob: 0.07 },
                   { token: "候補",       prob: 0.03 }
                 ],
-                chosen: "いい"
+                chosen: "いい",
+                branches: {
+                  "美味しい": [
+                    {
+                      context: "コーヒーに合うのはドーナツも美味しい",
+                      candidates: [
+                        { token: "よね",   prob: 0.50 },
+                        { token: "ね",     prob: 0.25 },
+                        { token: "。",     prob: 0.15 },
+                        { token: "な",     prob: 0.07 },
+                        { token: "から",   prob: 0.03 }
+                      ],
+                      chosen: "よね"
+                    }
+                  ],
+                  "好き": [],
+                  "アリ": [],
+                  "候補": []
+                }
               },
               {
                 context: "コーヒーに合うのはドーナツもいい",
@@ -555,7 +1215,59 @@ window.APP_DATA = {
                   { token: "と",       prob: 0.15 },
                   { token: "、",       prob: 0.10 }
                 ],
-                chosen: "なんて"
+                chosen: "なんて",
+                branches: {
+                  "だ": [
+                    {
+                      context: "コーヒーに合うのは塩だ",
+                      candidates: [
+                        { token: "と", prob: 0.45 },
+                        { token: "ね", prob: 0.20 },
+                        { token: "。", prob: 0.15 },
+                        { token: "よ", prob: 0.12 },
+                        { token: "な", prob: 0.08 }
+                      ],
+                      chosen: "と"
+                    },
+                    {
+                      context: "コーヒーに合うのは塩だと",
+                      candidates: [
+                        { token: "言う人", prob: 0.40 },
+                        { token: "思う",   prob: 0.30 },
+                        { token: "聞いた", prob: 0.15 },
+                        { token: "信じる", prob: 0.10 },
+                        { token: "決めた", prob: 0.05 }
+                      ],
+                      chosen: "言う人"
+                    },
+                    {
+                      context: "コーヒーに合うのは塩だと言う人",
+                      candidates: [
+                        { token: "もいる", prob: 0.55 },
+                        { token: "がいる", prob: 0.25 },
+                        { token: "は",     prob: 0.10 },
+                        { token: "に",     prob: 0.07 },
+                        { token: "を",     prob: 0.03 }
+                      ],
+                      chosen: "もいる"
+                    }
+                  ],
+                  "です": [],
+                  "と": [
+                    {
+                      context: "コーヒーに合うのは塩と",
+                      candidates: [
+                        { token: "言われた", prob: 0.40 },
+                        { token: "言うけど", prob: 0.25 },
+                        { token: "聞いた",   prob: 0.20 },
+                        { token: "信じる",   prob: 0.10 },
+                        { token: "決まった", prob: 0.05 }
+                      ],
+                      chosen: "言われた"
+                    }
+                  ],
+                  "、": []
+                }
               },
               {
                 context: "コーヒーに合うのは塩なんて",
@@ -580,7 +1292,36 @@ window.APP_DATA = {
             { token: "かな",   prob: 0.12 },
             { token: "。",     prob: 0.08 }
           ],
-          chosen: "です"
+          chosen: "です",
+          branches: {
+            "だ": [
+              {
+                context: "コーヒーに合うのはケーキだ",
+                candidates: [
+                  { token: "と", prob: 0.45 },
+                  { token: "ね", prob: 0.25 },
+                  { token: "。", prob: 0.15 },
+                  { token: "よ", prob: 0.10 },
+                  { token: "な", prob: 0.05 }
+                ],
+                chosen: "と"
+              },
+              {
+                context: "コーヒーに合うのはケーキだと",
+                candidates: [
+                  { token: "思う",     prob: 0.55 },
+                  { token: "言う",     prob: 0.20 },
+                  { token: "信じる",   prob: 0.10 },
+                  { token: "個人的に", prob: 0.10 },
+                  { token: "確信",     prob: 0.05 }
+                ],
+                chosen: "思う"
+              }
+            ],
+            "だろう": [],
+            "かな": [],
+            "。": []
+          }
         },
         {
           context: "コーヒーに合うのはケーキです",
@@ -591,7 +1332,25 @@ window.APP_DATA = {
             { token: "が", prob: 0.05 },
             { token: "か", prob: 0.05 }
           ],
-          chosen: "ね"
+          chosen: "ね",
+          branches: {
+            "よ": [
+              {
+                context: "コーヒーに合うのはケーキですよ",
+                candidates: [
+                  { token: "。",   prob: 0.55 },
+                  { token: "ね",   prob: 0.25 },
+                  { token: "！",   prob: 0.10 },
+                  { token: "～",   prob: 0.07 },
+                  { token: "、",   prob: 0.03 }
+                ],
+                chosen: "。"
+              }
+            ],
+            "。": [],
+            "が": [],
+            "か": []
+          }
         }
       ]
     },
@@ -807,7 +1566,105 @@ window.APP_DATA = {
             { token: "美しい",   prob: 0.07 },
             { token: "古い",     prob: 0.03 }
           ],
-          chosen: "高い"
+          chosen: "高い",
+          branches: {
+            "大きな": [
+              {
+                context: "富士山は日本で一番大きな",
+                candidates: [
+                  { token: "山",   prob: 0.65 },
+                  { token: "名峰", prob: 0.15 },
+                  { token: "火山", prob: 0.10 },
+                  { token: "場所", prob: 0.07 },
+                  { token: "存在", prob: 0.03 }
+                ],
+                chosen: "山"
+              },
+              {
+                context: "富士山は日本で一番大きな山",
+                candidates: [
+                  { token: "です", prob: 0.55 },
+                  { token: "だ",   prob: 0.25 },
+                  { token: "。",   prob: 0.10 },
+                  { token: "ですよ", prob: 0.07 },
+                  { token: "ね",   prob: 0.03 }
+                ],
+                chosen: "です"
+              }
+            ],
+            "有名な": [
+              {
+                context: "富士山は日本で一番有名な",
+                candidates: [
+                  { token: "山",   prob: 0.65 },
+                  { token: "名峰", prob: 0.15 },
+                  { token: "場所", prob: 0.10 },
+                  { token: "火山", prob: 0.07 },
+                  { token: "シンボル", prob: 0.03 }
+                ],
+                chosen: "山"
+              },
+              {
+                context: "富士山は日本で一番有名な山",
+                candidates: [
+                  { token: "です",   prob: 0.55 },
+                  { token: "だ",     prob: 0.25 },
+                  { token: "。",     prob: 0.10 },
+                  { token: "ですよ", prob: 0.07 },
+                  { token: "ね",     prob: 0.03 }
+                ],
+                chosen: "です"
+              }
+            ],
+            "美しい": [
+              {
+                context: "富士山は日本で一番美しい",
+                candidates: [
+                  { token: "山",   prob: 0.65 },
+                  { token: "名峰", prob: 0.15 },
+                  { token: "場所", prob: 0.10 },
+                  { token: "景色", prob: 0.07 },
+                  { token: "火山", prob: 0.03 }
+                ],
+                chosen: "山"
+              },
+              {
+                context: "富士山は日本で一番美しい山",
+                candidates: [
+                  { token: "です",   prob: 0.55 },
+                  { token: "だ",     prob: 0.25 },
+                  { token: "。",     prob: 0.10 },
+                  { token: "ですよ", prob: 0.07 },
+                  { token: "ね",     prob: 0.03 }
+                ],
+                chosen: "です"
+              }
+            ],
+            "古い": [
+              {
+                context: "富士山は日本で一番古い",
+                candidates: [
+                  { token: "火山", prob: 0.55 },
+                  { token: "山",   prob: 0.25 },
+                  { token: "名峰", prob: 0.10 },
+                  { token: "場所", prob: 0.07 },
+                  { token: "名所", prob: 0.03 }
+                ],
+                chosen: "火山"
+              },
+              {
+                context: "富士山は日本で一番古い火山",
+                candidates: [
+                  { token: "です",     prob: 0.55 },
+                  { token: "だ",       prob: 0.25 },
+                  { token: "。",       prob: 0.10 },
+                  { token: "らしい",   prob: 0.07 },
+                  { token: "とのこと", prob: 0.03 }
+                ],
+                chosen: "です"
+              }
+            ]
+          }
         },
         {
           context: "富士山は日本で一番高い",
@@ -818,7 +1675,61 @@ window.APP_DATA = {
             { token: "火山",   prob: 0.07 },
             { token: "場所",   prob: 0.03 }
           ],
-          chosen: "山"
+          chosen: "山",
+          branches: {
+            "山岳": [
+              {
+                context: "富士山は日本で一番高い山岳",
+                candidates: [
+                  { token: "です",   prob: 0.55 },
+                  { token: "だ",     prob: 0.25 },
+                  { token: "。",     prob: 0.10 },
+                  { token: "ですよ", prob: 0.07 },
+                  { token: "ね",     prob: 0.03 }
+                ],
+                chosen: "です"
+              }
+            ],
+            "名峰": [
+              {
+                context: "富士山は日本で一番高い名峰",
+                candidates: [
+                  { token: "です",   prob: 0.55 },
+                  { token: "だ",     prob: 0.25 },
+                  { token: "。",     prob: 0.10 },
+                  { token: "ですよ", prob: 0.07 },
+                  { token: "ね",     prob: 0.03 }
+                ],
+                chosen: "です"
+              }
+            ],
+            "火山": [
+              {
+                context: "富士山は日本で一番高い火山",
+                candidates: [
+                  { token: "です",   prob: 0.55 },
+                  { token: "だ",     prob: 0.25 },
+                  { token: "。",     prob: 0.10 },
+                  { token: "ですよ", prob: 0.07 },
+                  { token: "ね",     prob: 0.03 }
+                ],
+                chosen: "です"
+              }
+            ],
+            "場所": [
+              {
+                context: "富士山は日本で一番高い場所",
+                candidates: [
+                  { token: "です",   prob: 0.55 },
+                  { token: "だ",     prob: 0.25 },
+                  { token: "。",     prob: 0.10 },
+                  { token: "ですよ", prob: 0.07 },
+                  { token: "ね",     prob: 0.03 }
+                ],
+                chosen: "です"
+              }
+            ]
+          }
         },
         {
           context: "富士山は日本で一番高い山",
@@ -829,7 +1740,37 @@ window.APP_DATA = {
             { token: "であり",   prob: 0.07 },
             { token: "ね",       prob: 0.03 }
           ],
-          chosen: "です"
+          chosen: "です",
+          branches: {
+            "だ": [
+              {
+                context: "富士山は日本で一番高い山だ",
+                candidates: [
+                  { token: "。",   prob: 0.55 },
+                  { token: "ね",   prob: 0.20 },
+                  { token: "よ",   prob: 0.15 },
+                  { token: "から", prob: 0.07 },
+                  { token: "が",   prob: 0.03 }
+                ],
+                chosen: "。"
+              }
+            ],
+            "。": [],
+            "であり": [
+              {
+                context: "富士山は日本で一番高い山であり",
+                candidates: [
+                  { token: "、",   prob: 0.40 },
+                  { token: "ます", prob: 0.30 },
+                  { token: "名峰", prob: 0.15 },
+                  { token: "シンボル", prob: 0.10 },
+                  { token: "誇り", prob: 0.05 }
+                ],
+                chosen: "、"
+              }
+            ],
+            "ね": []
+          }
         },
         {
           context: "富士山は日本で一番高い山です",
@@ -840,7 +1781,13 @@ window.APP_DATA = {
             { token: "が",   prob: 0.03 },
             { token: "から", prob: 0.02 }
           ],
-          chosen: "。"
+          chosen: "。",
+          branches: {
+            "ね": [],
+            "よ": [],
+            "が": [],
+            "から": []
+          }
         }
       ]
     },
@@ -871,7 +1818,115 @@ window.APP_DATA = {
                   { token: "は", prob: 0.10 },
                   { token: "を", prob: 0.05 }
                 ],
-                chosen: "が"
+                chosen: "が",
+                branches: {
+                  "の": [
+                    {
+                      context: "夜空に月の",
+                      candidates: [
+                        { token: "光",   prob: 0.40 },
+                        { token: "影",   prob: 0.20 },
+                        { token: "輪郭", prob: 0.15 },
+                        { token: "下に", prob: 0.15 },
+                        { token: "色",   prob: 0.10 }
+                      ],
+                      chosen: "光"
+                    },
+                    {
+                      context: "夜空に月の光",
+                      candidates: [
+                        { token: "が",   prob: 0.55 },
+                        { token: "は",   prob: 0.20 },
+                        { token: "を",   prob: 0.15 },
+                        { token: "の",   prob: 0.07 },
+                        { token: "と",   prob: 0.03 }
+                      ],
+                      chosen: "が"
+                    },
+                    {
+                      context: "夜空に月の光が",
+                      candidates: [
+                        { token: "差し込む", prob: 0.40 },
+                        { token: "見える",   prob: 0.30 },
+                        { token: "灯る",     prob: 0.15 },
+                        { token: "瞬く",     prob: 0.10 },
+                        { token: "消えた",   prob: 0.05 }
+                      ],
+                      chosen: "差し込む"
+                    }
+                  ],
+                  "と": [
+                    {
+                      context: "夜空に月と",
+                      candidates: [
+                        { token: "星",     prob: 0.55 },
+                        { token: "雲",     prob: 0.20 },
+                        { token: "風",     prob: 0.10 },
+                        { token: "光",     prob: 0.10 },
+                        { token: "夜",     prob: 0.05 }
+                      ],
+                      chosen: "星"
+                    },
+                    {
+                      context: "夜空に月と星",
+                      candidates: [
+                        { token: "が",   prob: 0.55 },
+                        { token: "の",   prob: 0.20 },
+                        { token: "が並んで", prob: 0.10 },
+                        { token: "たち", prob: 0.10 },
+                        { token: "は",   prob: 0.05 }
+                      ],
+                      chosen: "が"
+                    },
+                    {
+                      context: "夜空に月と星が",
+                      candidates: [
+                        { token: "輝いて", prob: 0.45 },
+                        { token: "光って", prob: 0.30 },
+                        { token: "並んで", prob: 0.15 },
+                        { token: "瞬いて", prob: 0.07 },
+                        { token: "見える", prob: 0.03 }
+                      ],
+                      chosen: "輝いて"
+                    },
+                    {
+                      context: "夜空に月と星が輝いて",
+                      candidates: [
+                        { token: "いる",     prob: 0.55 },
+                        { token: "いた",     prob: 0.20 },
+                        { token: "いました", prob: 0.15 },
+                        { token: "る",       prob: 0.07 },
+                        { token: "。",       prob: 0.03 }
+                      ],
+                      chosen: "いる"
+                    }
+                  ],
+                  "は": [
+                    {
+                      context: "夜空に月は",
+                      candidates: [
+                        { token: "輝いて",   prob: 0.40 },
+                        { token: "出て",     prob: 0.25 },
+                        { token: "ひとつ",   prob: 0.15 },
+                        { token: "見えない", prob: 0.15 },
+                        { token: "光って",   prob: 0.05 }
+                      ],
+                      chosen: "輝いて"
+                    },
+                    {
+                      context: "夜空に月は輝いて",
+                      candidates: [
+                        { token: "いる",     prob: 0.55 },
+                        { token: "いた",     prob: 0.20 },
+                        { token: "いました", prob: 0.15 },
+                        { token: "る",       prob: 0.07 },
+                        { token: "。",       prob: 0.03 }
+                      ],
+                      chosen: "いる"
+                    }
+                  ],
+                  "を": []
+                }
               },
               {
                 context: "夜空に月が",
@@ -882,7 +1937,49 @@ window.APP_DATA = {
                   { token: "光って",     prob: 0.15 },
                   { token: "見える",     prob: 0.05 }
                 ],
-                chosen: "浮かんで"
+                chosen: "浮かんで",
+                branches: {
+                  "出て": [
+                    {
+                      context: "夜空に月が出て",
+                      candidates: [
+                        { token: "いる",     prob: 0.55 },
+                        { token: "いた",     prob: 0.20 },
+                        { token: "いました", prob: 0.15 },
+                        { token: "る",       prob: 0.07 },
+                        { token: "。",       prob: 0.03 }
+                      ],
+                      chosen: "いる"
+                    }
+                  ],
+                  "かかって": [
+                    {
+                      context: "夜空に月がかかって",
+                      candidates: [
+                        { token: "いる",     prob: 0.55 },
+                        { token: "いた",     prob: 0.20 },
+                        { token: "いました", prob: 0.15 },
+                        { token: "る",       prob: 0.07 },
+                        { token: "。",       prob: 0.03 }
+                      ],
+                      chosen: "いる"
+                    }
+                  ],
+                  "光って": [
+                    {
+                      context: "夜空に月が光って",
+                      candidates: [
+                        { token: "いる",     prob: 0.55 },
+                        { token: "いた",     prob: 0.20 },
+                        { token: "いました", prob: 0.15 },
+                        { token: "る",       prob: 0.07 },
+                        { token: "。",       prob: 0.03 }
+                      ],
+                      chosen: "いる"
+                    }
+                  ],
+                  "見える": []
+                }
               },
               {
                 context: "夜空に月が浮かんで",
@@ -941,7 +2038,61 @@ window.APP_DATA = {
                   { token: "漂って",   prob: 0.15 },
                   { token: "かかって", prob: 0.05 }
                 ],
-                chosen: "流れて"
+                chosen: "流れて",
+                branches: {
+                  "浮かんで": [
+                    {
+                      context: "夜空に雲が浮かんで",
+                      candidates: [
+                        { token: "いる",     prob: 0.55 },
+                        { token: "いた",     prob: 0.20 },
+                        { token: "いました", prob: 0.15 },
+                        { token: "る",       prob: 0.07 },
+                        { token: "。",       prob: 0.03 }
+                      ],
+                      chosen: "いる"
+                    }
+                  ],
+                  "広がって": [
+                    {
+                      context: "夜空に雲が広がって",
+                      candidates: [
+                        { token: "いる",     prob: 0.55 },
+                        { token: "いた",     prob: 0.20 },
+                        { token: "いました", prob: 0.15 },
+                        { token: "る",       prob: 0.07 },
+                        { token: "。",       prob: 0.03 }
+                      ],
+                      chosen: "いる"
+                    }
+                  ],
+                  "漂って": [
+                    {
+                      context: "夜空に雲が漂って",
+                      candidates: [
+                        { token: "いる",     prob: 0.55 },
+                        { token: "いた",     prob: 0.20 },
+                        { token: "いました", prob: 0.15 },
+                        { token: "る",       prob: 0.07 },
+                        { token: "。",       prob: 0.03 }
+                      ],
+                      chosen: "いる"
+                    }
+                  ],
+                  "かかって": [
+                    {
+                      context: "夜空に雲がかかって",
+                      candidates: [
+                        { token: "いる",     prob: 0.55 },
+                        { token: "いた",     prob: 0.20 },
+                        { token: "いました", prob: 0.15 },
+                        { token: "る",       prob: 0.07 },
+                        { token: "。",       prob: 0.03 }
+                      ],
+                      chosen: "いる"
+                    }
+                  ]
+                }
               },
               {
                 context: "夜空に雲が流れて",
@@ -1012,7 +2163,81 @@ window.APP_DATA = {
             { token: "は",   prob: 0.07 },
             { token: "を",   prob: 0.03 }
           ],
-          chosen: "が"
+          chosen: "が",
+          branches: {
+            "の": [
+              {
+                context: "夜空に星の",
+                candidates: [
+                  { token: "光",     prob: 0.40 },
+                  { token: "瞬き",   prob: 0.25 },
+                  { token: "群れ",   prob: 0.15 },
+                  { token: "海",     prob: 0.10 },
+                  { token: "輝き",   prob: 0.10 }
+                ],
+                chosen: "光"
+              },
+              {
+                context: "夜空に星の光",
+                candidates: [
+                  { token: "が",   prob: 0.55 },
+                  { token: "は",   prob: 0.20 },
+                  { token: "を",   prob: 0.15 },
+                  { token: "の",   prob: 0.07 },
+                  { token: "と",   prob: 0.03 }
+                ],
+                chosen: "が"
+              },
+              {
+                context: "夜空に星の光が",
+                candidates: [
+                  { token: "見える",   prob: 0.35 },
+                  { token: "瞬いて",   prob: 0.25 },
+                  { token: "差し込む", prob: 0.20 },
+                  { token: "輝く",     prob: 0.15 },
+                  { token: "消えた",   prob: 0.05 }
+                ],
+                chosen: "見える"
+              }
+            ],
+            "たち": [
+              {
+                context: "夜空に星たち",
+                candidates: [
+                  { token: "が",   prob: 0.55 },
+                  { token: "は",   prob: 0.25 },
+                  { token: "の",   prob: 0.10 },
+                  { token: "と",   prob: 0.07 },
+                  { token: "を",   prob: 0.03 }
+                ],
+                chosen: "が"
+              },
+              {
+                context: "夜空に星たちが",
+                candidates: [
+                  { token: "輝いて",   prob: 0.45 },
+                  { token: "瞬いて",   prob: 0.25 },
+                  { token: "踊って",   prob: 0.15 },
+                  { token: "歌って",   prob: 0.10 },
+                  { token: "光って",   prob: 0.05 }
+                ],
+                chosen: "輝いて"
+              },
+              {
+                context: "夜空に星たちが輝いて",
+                candidates: [
+                  { token: "いる",     prob: 0.55 },
+                  { token: "いた",     prob: 0.20 },
+                  { token: "いました", prob: 0.15 },
+                  { token: "る",       prob: 0.07 },
+                  { token: "。",       prob: 0.03 }
+                ],
+                chosen: "いる"
+              }
+            ],
+            "は": [],
+            "を": []
+          }
         },
         {
           context: "夜空に星が",
@@ -1023,7 +2248,105 @@ window.APP_DATA = {
             { token: "無数に",     prob: 0.14 },
             { token: "寂しく",     prob: 0.10 }
           ],
-          chosen: "きらきらと"
+          chosen: "きらきらと",
+          branches: {
+            "静かに": [
+              {
+                context: "夜空に星が静かに",
+                candidates: [
+                  { token: "輝いて", prob: 0.45 },
+                  { token: "光って", prob: 0.30 },
+                  { token: "瞬いて", prob: 0.15 },
+                  { token: "佇んで", prob: 0.07 },
+                  { token: "ある",   prob: 0.03 }
+                ],
+                chosen: "輝いて"
+              },
+              {
+                context: "夜空に星が静かに輝いて",
+                candidates: [
+                  { token: "いる",     prob: 0.55 },
+                  { token: "いた",     prob: 0.20 },
+                  { token: "いました", prob: 0.15 },
+                  { token: "る",       prob: 0.07 },
+                  { token: "。",       prob: 0.03 }
+                ],
+                chosen: "いる"
+              }
+            ],
+            "まばらに": [
+              {
+                context: "夜空に星がまばらに",
+                candidates: [
+                  { token: "光って", prob: 0.40 },
+                  { token: "輝いて", prob: 0.30 },
+                  { token: "浮かんで", prob: 0.15 },
+                  { token: "散らばって", prob: 0.10 },
+                  { token: "瞬いて", prob: 0.05 }
+                ],
+                chosen: "光って"
+              },
+              {
+                context: "夜空に星がまばらに光って",
+                candidates: [
+                  { token: "いる",     prob: 0.55 },
+                  { token: "いた",     prob: 0.20 },
+                  { token: "いました", prob: 0.15 },
+                  { token: "る",       prob: 0.07 },
+                  { token: "。",       prob: 0.03 }
+                ],
+                chosen: "いる"
+              }
+            ],
+            "無数に": [
+              {
+                context: "夜空に星が無数に",
+                candidates: [
+                  { token: "輝いて", prob: 0.40 },
+                  { token: "瞬いて", prob: 0.25 },
+                  { token: "広がって", prob: 0.20 },
+                  { token: "浮かんで", prob: 0.10 },
+                  { token: "見える", prob: 0.05 }
+                ],
+                chosen: "輝いて"
+              },
+              {
+                context: "夜空に星が無数に輝いて",
+                candidates: [
+                  { token: "いる",     prob: 0.55 },
+                  { token: "いた",     prob: 0.20 },
+                  { token: "いました", prob: 0.15 },
+                  { token: "る",       prob: 0.07 },
+                  { token: "。",       prob: 0.03 }
+                ],
+                chosen: "いる"
+              }
+            ],
+            "寂しく": [
+              {
+                context: "夜空に星が寂しく",
+                candidates: [
+                  { token: "光って", prob: 0.40 },
+                  { token: "瞬いて", prob: 0.30 },
+                  { token: "輝いて", prob: 0.20 },
+                  { token: "佇んで", prob: 0.07 },
+                  { token: "ある",   prob: 0.03 }
+                ],
+                chosen: "光って"
+              },
+              {
+                context: "夜空に星が寂しく光って",
+                candidates: [
+                  { token: "いる",     prob: 0.55 },
+                  { token: "いた",     prob: 0.20 },
+                  { token: "いました", prob: 0.15 },
+                  { token: "る",       prob: 0.07 },
+                  { token: "。",       prob: 0.03 }
+                ],
+                chosen: "いる"
+              }
+            ]
+          }
         },
         {
           context: "夜空に星がきらきらと",
@@ -1034,7 +2357,49 @@ window.APP_DATA = {
             { token: "流れて", prob: 0.05 },
             { token: "笑って", prob: 0.03 }
           ],
-          chosen: "輝いて"
+          chosen: "輝いて",
+          branches: {
+            "光って": [
+              {
+                context: "夜空に星がきらきらと光って",
+                candidates: [
+                  { token: "いる",     prob: 0.55 },
+                  { token: "いた",     prob: 0.20 },
+                  { token: "いました", prob: 0.15 },
+                  { token: "る",       prob: 0.07 },
+                  { token: "。",       prob: 0.03 }
+                ],
+                chosen: "いる"
+              }
+            ],
+            "瞬いて": [
+              {
+                context: "夜空に星がきらきらと瞬いて",
+                candidates: [
+                  { token: "いる",     prob: 0.55 },
+                  { token: "いた",     prob: 0.20 },
+                  { token: "いました", prob: 0.15 },
+                  { token: "る",       prob: 0.07 },
+                  { token: "。",       prob: 0.03 }
+                ],
+                chosen: "いる"
+              }
+            ],
+            "流れて": [
+              {
+                context: "夜空に星がきらきらと流れて",
+                candidates: [
+                  { token: "いく",     prob: 0.50 },
+                  { token: "いる",     prob: 0.25 },
+                  { token: "いた",     prob: 0.15 },
+                  { token: "いました", prob: 0.07 },
+                  { token: "る",       prob: 0.03 }
+                ],
+                chosen: "いく"
+              }
+            ],
+            "笑って": []
+          }
         },
         {
           context: "夜空に星がきらきらと輝いて",
@@ -1045,7 +2410,13 @@ window.APP_DATA = {
             { token: "る",       prob: 0.07 },
             { token: "。",       prob: 0.03 }
           ],
-          chosen: "いる"
+          chosen: "いる",
+          branches: {
+            "いた": [],
+            "いました": [],
+            "る": [],
+            "。": []
+          }
         }
       ]
     },
@@ -1162,7 +2533,37 @@ window.APP_DATA = {
             { token: "起きよう",   prob: 0.07 },
             { token: "目覚め",     prob: 0.03 }
           ],
-          chosen: "起き"
+          chosen: "起き",
+          branches: {
+            "出かけ": [
+              {
+                context: "明日の朝は早く出かけ",
+                candidates: [
+                  { token: "よう",   prob: 0.55 },
+                  { token: "たい",   prob: 0.20 },
+                  { token: "ましょう", prob: 0.15 },
+                  { token: "ない",   prob: 0.07 },
+                  { token: "る",     prob: 0.03 }
+                ],
+                chosen: "よう"
+              }
+            ],
+            "行こう": [],
+            "起きよう": [],
+            "目覚め": [
+              {
+                context: "明日の朝は早く目覚め",
+                candidates: [
+                  { token: "よう",   prob: 0.50 },
+                  { token: "たい",   prob: 0.25 },
+                  { token: "る",     prob: 0.15 },
+                  { token: "ない",   prob: 0.07 },
+                  { token: "そう",   prob: 0.03 }
+                ],
+                chosen: "よう"
+              }
+            ]
+          }
         },
         {
           context: "明日の朝は早く起き",
@@ -1173,7 +2574,37 @@ window.APP_DATA = {
             { token: "る",     prob: 0.15 },
             { token: "て",     prob: 0.07 }
           ],
-          chosen: "なきゃ"
+          chosen: "なきゃ",
+          branches: {
+            "よう": [
+              {
+                context: "明日の朝は早く起きよう",
+                candidates: [
+                  { token: "。",   prob: 0.55 },
+                  { token: "！",   prob: 0.20 },
+                  { token: "と思う", prob: 0.15 },
+                  { token: "かな", prob: 0.07 },
+                  { token: "ね",   prob: 0.03 }
+                ],
+                chosen: "。"
+              }
+            ],
+            "たい": [
+              {
+                context: "明日の朝は早く起きたい",
+                candidates: [
+                  { token: "。",     prob: 0.50 },
+                  { token: "な",     prob: 0.25 },
+                  { token: "ね",     prob: 0.15 },
+                  { token: "けど",   prob: 0.07 },
+                  { token: "から",   prob: 0.03 }
+                ],
+                chosen: "。"
+              }
+            ],
+            "る": [],
+            "て": []
+          }
         },
         {
           context: "明日の朝は早く起きなきゃ",
@@ -1184,7 +2615,13 @@ window.APP_DATA = {
             { token: "な",       prob: 0.10 },
             { token: "よ",       prob: 0.05 }
           ],
-          chosen: "いけない"
+          chosen: "いけない",
+          branches: {
+            "。": [],
+            "ね": [],
+            "な": [],
+            "よ": []
+          }
         }
       ]
     },
@@ -1368,7 +2805,72 @@ window.APP_DATA = {
             { token: "なんて",   prob: 0.15 },
             { token: "って",     prob: 0.10 }
           ],
-          chosen: "なんて"
+          chosen: "なんて",
+          branches: {
+            "の": [
+              {
+                context: "雨の日に走るの",
+                candidates: [
+                  { token: "は",     prob: 0.45 },
+                  { token: "が",     prob: 0.30 },
+                  { token: "も",     prob: 0.15 },
+                  { token: "を",     prob: 0.07 },
+                  { token: "って",   prob: 0.03 }
+                ],
+                chosen: "は"
+              },
+              {
+                context: "雨の日に走るのは",
+                candidates: [
+                  { token: "気持ちいい", prob: 0.40 },
+                  { token: "最高",       prob: 0.25 },
+                  { token: "楽しい",     prob: 0.20 },
+                  { token: "好き",       prob: 0.10 },
+                  { token: "難しい",     prob: 0.05 }
+                ],
+                chosen: "気持ちいい"
+              }
+            ],
+            "が": [
+              {
+                context: "雨の日に走るが",
+                candidates: [
+                  { token: "楽しい",   prob: 0.35 },
+                  { token: "好き",     prob: 0.25 },
+                  { token: "難しい",   prob: 0.20 },
+                  { token: "趣味だ",   prob: 0.15 },
+                  { token: "心地よい", prob: 0.05 }
+                ],
+                chosen: "楽しい"
+              }
+            ],
+            "と": [
+              {
+                context: "雨の日に走ると",
+                candidates: [
+                  { token: "気持ちいい", prob: 0.40 },
+                  { token: "楽しい",     prob: 0.25 },
+                  { token: "言うけど",   prob: 0.15 },
+                  { token: "風邪を",     prob: 0.12 },
+                  { token: "決めた",     prob: 0.08 }
+                ],
+                chosen: "気持ちいい"
+              }
+            ],
+            "って": [
+              {
+                context: "雨の日に走るって",
+                candidates: [
+                  { token: "気持ちいい", prob: 0.40 },
+                  { token: "最高",       prob: 0.25 },
+                  { token: "楽しい",     prob: 0.20 },
+                  { token: "おかしい",   prob: 0.10 },
+                  { token: "難しい",     prob: 0.05 }
+                ],
+                chosen: "気持ちいい"
+              }
+            ]
+          }
         },
         {
           context: "雨の日に走るなんて",
@@ -1379,7 +2881,13 @@ window.APP_DATA = {
             { token: "気持ちいい",   prob: 0.10 },
             { token: "変",           prob: 0.05 }
           ],
-          chosen: "気持ちいい"
+          chosen: "気持ちいい",
+          branches: {
+            "最高": [],
+            "楽しい": [],
+            "クレイジー": [],
+            "変": []
+          }
         }
       ]
     }

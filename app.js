@@ -9,6 +9,11 @@
 
   function deepClone(x) { return JSON.parse(JSON.stringify(x)); }
 
+  // 文末として自然に閉じている文字列かを軽く判定
+  // (タブ1の分岐dead-endメッセージを「完成」と「途切れ」で出し分けるため)
+  const TERM_RE = /(?:[。！？♪～\.\!\?]|です|でした|だ|だね|だな|だよ|だから|だろう|でしょう|ます|ません|ましょう|ない|たい|よう|こう|もう|そう|いる|いた|いました|おりました|おる|ある|あった|ありました|いい|楽しい|嬉しい|美しい|高い|怖い|気持ちいい|気持ちがいい|最高|大好き|好き|心配だ|困る|残念|変|信じられない|見える|聞こえる|もいる|がいる|思う|言われた|流れた|走った|過ごそう|寝よう|やろう|出よう|起きよう|出かけよう|淹れよう|焼こう|飲もう|食べよう|楽しもう|買おう|始めよう|行こう|帰ろう|起きる|寝る|起きたい|出かけたい|ね|よ|わ|さ|な|かな|よね|もん|から|けど|ので)$/;
+  function looksComplete(text) { return TERM_RE.test(text); }
+
   // ====================================================================
   // テーマ切り替え (issue #6)
   // ====================================================================
@@ -184,11 +189,19 @@
       t1El.final.hidden = false;
       if (t1.diverged) {
         t1El.final.classList.add("diverged");
-        t1El.final.innerHTML =
-          "<strong>違う道で完成: </strong>" + escapeHtml(full) +
-          "<br><br>ここから先は別の分岐になりましたが、" +
-          "LLM はこのように <strong>確率の低い枝</strong> もたまに通ります。" +
-          "毎回違う出力になるのはこのためです。";
+        if (looksComplete(full)) {
+          t1El.final.innerHTML =
+            "<strong>違う道で完成: </strong>" + escapeHtml(full) +
+            "<br><br>ここから先は別の分岐になりましたが、" +
+            "LLM はこのように <strong>確率の低い枝</strong> もたまに通ります。" +
+            "毎回違う出力になるのはこのためです。";
+        } else {
+          t1El.final.innerHTML =
+            "<strong>ここで途切れました: </strong>" + escapeHtml(full) +
+            "<br><br>本物の LLM はこの先も <strong>自分でその場で続きを考えます</strong>。" +
+            "このデモは事前に用意した分岐に限定しているので、ここで止まります。" +
+            "「最初から ⟲」 で別の道を試してみてください。";
+        }
       } else {
         t1El.final.classList.remove("diverged");
         t1El.final.innerHTML =
